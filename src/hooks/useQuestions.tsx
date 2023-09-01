@@ -18,7 +18,7 @@ export const useQuestions = () => {
 
     axios.get<Array<Question>>("http://localhost:3010/questions")
     .then((res) => { setQuestions(res.data) })
-    .catch(() => { showMessage({ title: "問題の取得に失敗しました", status: "error" })})
+    .catch(() => { showMessage({ title: "問題の取得に失敗しました", status: "error", duration: 800 })})
     .finally(() => { setLoading(false) })
   },[]);
 

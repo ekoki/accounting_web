@@ -15,13 +15,9 @@ export const Router: VFC = memo(() => {
       <Route exact path="/questions">
         <Questions />
       </Route>
-      <Route exact path="/answers">
-        <Answers />
-      </Route>
       <Route exact path="*">
         <Page404 />
       </Route>
-      
     </Switch>
   )
 })
