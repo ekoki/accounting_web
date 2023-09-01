@@ -1,19 +1,26 @@
-import { memo, VFC, useState, useCallback } from "react";
+import { memo, VFC, useState, useCallback, useEffect } from "react";
 import { Box, Heading, Wrap, WrapItem, Flex, Stack, VStack, Button, Divider } from "@chakra-ui/react"
 import { useHistory} from "react-router-dom"
 
 import { Question } from "../../types/api/Question"
+import { useMessage } from "../../hooks/useMessage"
 
 type Props = {
   questions: Question[]
+  score: number
 }
 
 export const Answers: VFC<Props> = memo((props) => {
-  const { questions } = props;
+  const { questions, score } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const history = useHistory();
+  const { showMessage } = useMessage();
 
   const onClickStaticPages = useCallback(() => history.push("/"), [history]);
+
+  useEffect(() => {
+    showMessage({ title: `お疲れ様でした！${questions.length}問中${score}問正解です!`, status: "success", duration: 6000 });
+  }, [showMessage, questions.length, score]);
 
   return (
     <Flex align="center" justify="center" height="100vh">

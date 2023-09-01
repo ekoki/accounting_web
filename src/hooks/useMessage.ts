@@ -4,18 +4,19 @@ import { useToast } from "@chakra-ui/react";
 type Props = {
   title: string;
   status: "info" | "warning" | "success" | "error";
+  duration: number;
 }
 
 export const useMessage = () => {
   const toast = useToast();
 
   const showMessage = useCallback((props: Props) => {
-    const  { title, status } = props;
+    const  { title, status, duration } = props;
     toast({
       title,
       status,
       position: "top",
-      duration: 800,
+      duration,
       isClosable: true
     });
   },[toast]);

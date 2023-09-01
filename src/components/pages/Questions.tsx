@@ -1,36 +1,30 @@
 import { memo, useCallback, useEffect, useState, VFC } from "react";
-import { Flex, Box, Heading, Divider, Stack, Button, Link} from "@chakra-ui/react"
+import { Flex, Box, Heading, Divider, Stack, Button, Link, Text} from "@chakra-ui/react"
 import { useHistory} from "react-router-dom"
 
 import { useQuestions } from "../../hooks/useQuestions";
-import { useMessage } from "../../hooks/useMessage"
+import { useMessage } from "../../hooks/useMessage";
 import { Answers } from "./Answers"
 
 export const Questions: VFC = memo(() => {
   const { getQuestions, questions } = useQuestions();
-  const [ currentQuestion, setCurrentQuestion ] = useState(0);
-  const [ score, setScore ] = useState(0);
-  const [ finished, setFinished ] = useState(false);
+  const [ currentQuestion, setCurrentQuestion ] = useState<number>(0);
+  const [ score, setScore ] = useState<number>(0);
+  const [ finished, setFinished ] = useState<boolean>(false);
   const { showMessage } = useMessage();
   const history = useHistory();
 
-  const onClickQuestions = useCallback(() => {
-    setCurrentQuestion(0);
-    setScore(0);
-    setFinished(false);
-    getQuestions();
-    history.push("/questions");
-  }, [history, getQuestions]);
+  const onClickAnswers = useCallback(() => history.push("/answers"), [history]);
 
   const onClickStaticPages = useCallback(() => history.push("/"), [history]);
 
   const handleQuestion = (userAnswer: boolean, correctAnswer: boolean) => {
     if(userAnswer === correctAnswer){
-      showMessage({title: "正解しました！", status: "success"})
+      showMessage({title: "正解しました！", status: "success", duration: 800})
       // setScore関数の直前stateを参照する
       setScore(prevScore => prevScore + 1)
     }else{
-      showMessage({title: "不正解です", status: "error"});
+      showMessage({title: "不正解です", status: "error", duration: 800});
     }
 
     const nextQuestion = currentQuestion + 1;
@@ -49,11 +43,8 @@ export const Questions: VFC = memo(() => {
  
         {finished ? (
           <>
-            <Answers  questions={questions} />
-            {/* <p>お疲れ様でした！{questions.length}問中{score}問正解です!</p>
-            <Link color="orange.400" textDecoration="underline" onClick={onClickQuestions}>問題をもう一度！</Link>
-            <br />
-            <Link color="orange.400" textDecoration="underline" onClick={onClickStaticPages}>ホーム画面へ戻る</Link> */}
+            {/* <p>お疲れ様でした！{questions.length}問中{score}問正解です!</p> */}
+            <Answers questions={questions} score={score} />
           </>
           ) : (
             <Flex align="center" justify="center" height="100vh">
@@ -63,7 +54,7 @@ export const Questions: VFC = memo(() => {
                     {questions.length}択クイズ
                   </Heading>
                   <Divider my={1} />
-                  <Stack spacing={10} py={10} px={10}>
+                  <Stack spacing={10} py={10} px={8}>
                     <Heading as="h2" size="md" textAlign="center">
                       問題{currentQuestion + 1}
                     </Heading>
