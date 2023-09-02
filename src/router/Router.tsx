@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom"
 
 import { StaticPages } from "../components/pages/StaticPages"
 import { Questions } from "../components/pages/Questions"
-import { Answers } from "../components/pages/Answers"
 import { Page404 } from "../components/pages/Page404"
 
 export const Router: VFC = memo(() => {

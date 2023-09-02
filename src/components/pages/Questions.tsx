@@ -1,6 +1,5 @@
-import { memo, useCallback, useEffect, useState, VFC } from "react";
-import { Flex, Box, Heading, Divider, Stack, Button, Link, Text} from "@chakra-ui/react"
-import { useHistory} from "react-router-dom"
+import { memo, useEffect, useState, VFC } from "react";
+import { Flex, Box, Heading, Divider, Stack, Button } from "@chakra-ui/react"
 
 import { useQuestions } from "../../hooks/useQuestions";
 import { useMessage } from "../../hooks/useMessage";

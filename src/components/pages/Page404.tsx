@@ -1,5 +1,5 @@
 import { memo, VFC } from "react";
-import { Box, Flex, Heading, Text, Button } from '@chakra-ui/react'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 
 export const Page404: VFC = memo(() => {
   return (
