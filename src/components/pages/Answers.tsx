@@ -1,5 +1,5 @@
 import { memo, VFC, useState, useCallback, useEffect } from "react";
-import { Box, Heading, Wrap, WrapItem, Flex, Stack, VStack, Button, Divider } from "@chakra-ui/react"
+import { Box, Heading, Flex, Stack, Button, Divider } from "@chakra-ui/react"
 import { useHistory} from "react-router-dom"
 
 import { Question } from "../../types/api/Question"
@@ -36,14 +36,10 @@ export const Answers: VFC<Props> = memo((props) => {
           <p>{questions[currentIndex].question}</p>
           <Heading as="h2" size="md" textAlign="center">
             解答{currentIndex + 1}
-            {console.log(questions[currentIndex])}
           </Heading>
           <p>{questions[currentIndex].comment}</p>
           {currentIndex === 2 ? (
-            <>
-              {/* <Button onClick={onClickQuestions}>問題をもう一度！</Button> */}
-              <Button onClick={onClickStaticPages}>ホーム画面へ戻る</Button>
-            </>
+            <Button onClick={onClickStaticPages}>ホーム画面へ戻る</Button>
           ) : (
             <Button onClick={() => setCurrentIndex(currentIndex + 1)}>次の解答へ</Button>
           )}
