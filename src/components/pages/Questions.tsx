@@ -12,11 +12,6 @@ export const Questions: VFC = memo(() => {
   const [ score, setScore ] = useState<number>(0);
   const [ finished, setFinished ] = useState<boolean>(false);
   const { showMessage } = useMessage();
-  const history = useHistory();
-
-  const onClickAnswers = useCallback(() => history.push("/answers"), [history]);
-
-  const onClickStaticPages = useCallback(() => history.push("/"), [history]);
 
   const handleQuestion = (userAnswer: boolean, correctAnswer: boolean) => {
     if(userAnswer === correctAnswer){
@@ -39,35 +34,29 @@ export const Questions: VFC = memo(() => {
 
   return (
     <>
-      
- 
-        {finished ? (
-          <>
-            {/* <p>お疲れ様でした！{questions.length}問中{score}問正解です!</p> */}
-            <Answers questions={questions} score={score} />
-          </>
-          ) : (
-            <Flex align="center" justify="center" height="100vh">
-              {questions.length > 0  && (
-                <Box bg="white" w="sm" p={4} borderRadius="3xl" shadow="md">
-                  <Heading as="h1" size="lg" textAlign="center">
-                    {questions.length}択クイズ
+      {finished ? (
+        <Answers questions={questions} score={score} />
+        ) : (
+          <Flex align="center" justify="center" height="100vh">
+            {questions.length > 0  && (
+              <Box bg="white" w="sm" p={4} borderRadius="3xl" shadow="md">
+                <Heading as="h1" size="lg" textAlign="center">
+                  {questions.length}択クイズ
+                </Heading>
+                <Divider my={1} />
+                <Stack spacing={10} py={10} px={8}>
+                  <Heading as="h2" size="md" textAlign="center">
+                    問題{currentQuestion + 1}
                   </Heading>
-                  <Divider my={1} />
-                  <Stack spacing={10} py={10} px={8}>
-                    <Heading as="h2" size="md" textAlign="center">
-                      問題{currentQuestion + 1}
-                    </Heading>
-                    <p>{questions[currentQuestion].question}</p>
-                    {/* パラメータを渡す関数の呼び出しでアロー関数を使うことにより、レンダリングの際に呼ばれないようにしている。すなわち、アロー関数で記載することにより、ボタンをクリックした際に関数が呼ばれる。 */}
-                    <Button onClick={() => handleQuestion(true, questions[currentQuestion].answer)}>はい</Button>
-                    <Button onClick={() => handleQuestion(false, questions[currentQuestion].answer)}>いいえ</Button>
-                  </Stack>
-                </Box>
-              )}
-            </Flex> 
-          )}
-      
+                  <p>{questions[currentQuestion].question}</p>
+                  {/* パラメータを渡す関数の呼び出しでアロー関数を使うことにより、レンダリングの際に呼ばれないようにしている。すなわち、アロー関数で記載することにより、ボタンをクリックした際に関数が呼ばれる。 */}
+                  <Button onClick={() => handleQuestion(true, questions[currentQuestion].answer)}>はい</Button>
+                  <Button onClick={() => handleQuestion(false, questions[currentQuestion].answer)}>いいえ</Button>
+                </Stack>
+              </Box>
+            )}
+          </Flex> 
+        )}
     </>
   )
 });
