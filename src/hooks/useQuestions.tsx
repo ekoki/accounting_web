@@ -13,7 +13,7 @@ export const useQuestions = () => {
   // APIからquestionの情報を取得している。
   const getQuestions = useCallback(() => {
 
-    axios.get<Array<Question>>("http://localhost:3010/questions")
+    axios.get<Array<Question>>("https://accounting-api-ncq1.onrender.com/index")
     .then((res) => { setQuestions(res.data) })
     .catch(() => { showMessage({ title: "問題の取得に失敗しました", status: "error", duration: 800 })})
   },[]);
