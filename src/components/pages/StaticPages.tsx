@@ -20,8 +20,8 @@ export const StaticPages: VFC = memo(() => {
         <Heading as="h1" size="md" pb="full">
           会計は役に立つスキルです！
         </Heading>
-        <Text>このアプリは会計の基礎的な問題を出題します。</Text>
-        <Text>全問正解目指して頑張っていきましょう！！</Text>
+        <Text>このアプリは会計についての問題を出題します。</Text>
+        <Text>楽しみながら、全問正解目指して頑張っていきましょう！！</Text>
         <Button backgroundColor="navy" color="white" onClick={onClickQuestions}>問題へ！</Button>
       </Box>
     </Flex>
