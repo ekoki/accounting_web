@@ -49,5 +49,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://accounting-api.herokuapp.com"
+  "engines": {
+    "node": "18.15.0"
+  },
+  "proxy": "https://accounting-api-ncq1.onrender.com"
 }
